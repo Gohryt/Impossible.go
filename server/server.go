@@ -29,13 +29,19 @@ func Listen(server, serverTLS *http.Server, TLSFolderAddress string, errorHandle
 }
 
 func listenTLS(serverTLS *http.Server, TLSFolderAddress string, errorHandler func(*error)) {
-	err := serverTLS.ListenAndServeTLS(TLSFolderAddress+"certificate.pem", TLSFolderAddress+"key.pem")
+	var (
+		err error
+	)
+	err = serverTLS.ListenAndServeTLS(TLSFolderAddress+"certificate.pem", TLSFolderAddress+"key.pem")
 	errorHandler(&err)
 	return
 }
 
 func listenForTLSRedirect(server *http.Server, errorHandler func(*error)) {
-	err := server.ListenAndServe()
+	var (
+		err error
+	)
+	err = server.ListenAndServe()
 	errorHandler(&err)
 	return
 }

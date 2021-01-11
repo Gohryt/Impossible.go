@@ -30,13 +30,21 @@ func (h *Headers) ToFile(filePath string, errorHandler func(*error)) {
 }
 
 func (h *Headers) ForRequest(request *http.Request) {
-	for key, value := range *h {
+	var (
+		key   string
+		value string
+	)
+	for key, value = range *h {
 		request.Header.Set(key, value)
 	}
 }
 
 func (h *Headers) ForResponse(response http.ResponseWriter) {
-	for key, value := range *h {
+	var (
+		key   string
+		value string
+	)
+	for key, value = range *h {
 		response.Header().Set(key, value)
 	}
 }

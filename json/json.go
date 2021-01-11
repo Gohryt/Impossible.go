@@ -7,17 +7,25 @@ import (
 )
 
 func FromMemory(data []byte, target interface{}, errorHandler func(*error)) {
+	var (
+		err error
+	)
 	if len(data) > 6 {
-		err := json.Unmarshal(data, target)
+		err = json.Unmarshal(data, target)
 		errorHandler(&err)
 	}
 	return
 }
 
 func FromFile(filePath string, target interface{}, errorHandler func(*error)) {
-	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
+	var (
+		file *os.File
+		data []byte
+		err  error
+	)
+	file, err = os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
 	errorHandler(&err)
-	data, err := ioutil.ReadAll(file)
+	data, err = ioutil.ReadAll(file)
 	errorHandler(&err)
 	if len(data) > 6 {
 		err = json.Unmarshal(data, target)
@@ -29,15 +37,23 @@ func FromFile(filePath string, target interface{}, errorHandler func(*error)) {
 }
 
 func ToMemory(target interface{}, errorHandler func(*error)) (data []byte) {
-	data, err := json.Marshal(target)
+	var (
+		err error
+	)
+	data, err = json.Marshal(target)
 	errorHandler(&err)
 	return
 }
 
 func ToFile(target interface{}, filePath string, errorHandler func(*error)) {
-	data, err := json.Marshal(target)
+	var (
+		file *os.File
+		data []byte
+		err  error
+	)
+	data, err = json.Marshal(target)
 	errorHandler(&err)
-	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
+	file, err = os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
 	errorHandler(&err)
 	if file != nil {
 		_, err = file.Write(data)

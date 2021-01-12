@@ -9,8 +9,8 @@ type (
 	Expression struct {
 		Compiled *regexp.Regexp
 		Real     struct {
-			String string
-			With   string
+			String string `json:"String"`
+			With   string `json:"With"`
 		}
 	}
 )

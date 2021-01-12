@@ -13,9 +13,11 @@ func ByteArray(number int64, pattern string, errorHandler func(*error)) (data *[
 	var (
 		array = make([]byte, number, number)
 		i1    int64
+		n     *big.Int
+		err   error
 	)
 	for i1 < number {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
+		n, err = rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
 		errorHandler(&err)
 		if n != nil {
 			array[i1] = pattern[n.Int64()]
@@ -30,9 +32,11 @@ func String(number int64, pattern string, errorHandler func(*error)) (data strin
 	var (
 		array = make([]byte, number, number)
 		i1    int64
+		n     *big.Int
+		err   error
 	)
 	for i1 < number {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
+		n, err = rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
 		errorHandler(&err)
 		if n != nil {
 			array[i1] = pattern[n.Int64()]

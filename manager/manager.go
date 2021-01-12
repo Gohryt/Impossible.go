@@ -7,7 +7,9 @@ import (
 )
 
 func Start() {
-	var uptime int64
+	var (
+		uptime int64
+	)
 	for range time.Tick(time.Hour) {
 		uptime++
 		fmt.Println("Uptime is ", uptime, " hours")

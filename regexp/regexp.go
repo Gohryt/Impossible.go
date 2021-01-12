@@ -17,6 +17,7 @@ type (
 
 func (r *Expression) Replace(target *string) {
 	*target = r.Compiled.ReplaceAllString(*target, r.Real.With)
+	return
 }
 
 func (r *Expression) FromMemory(data []byte, errorHandler func(*error)) {

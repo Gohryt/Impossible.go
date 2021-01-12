@@ -37,6 +37,7 @@ func (h *Headers) ForRequest(request *http.Request) {
 	for key, value = range *h {
 		request.Header.Set(key, value)
 	}
+	return
 }
 
 func (h *Headers) ForResponse(response http.ResponseWriter) {
@@ -47,4 +48,5 @@ func (h *Headers) ForResponse(response http.ResponseWriter) {
 	for key, value = range *h {
 		response.Header().Set(key, value)
 	}
+	return
 }

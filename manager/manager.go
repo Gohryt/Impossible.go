@@ -19,7 +19,7 @@ func Start() {
 
 func CriticalHandler(err *error) {
 	if *err != nil {
-		fmt.Println(err)
+		fmt.Println(*err)
 		os.Exit(1)
 	}
 	return
@@ -27,7 +27,7 @@ func CriticalHandler(err *error) {
 
 func StandardHandler(err *error) {
 	if *err != nil {
-		fmt.Println(err)
+		fmt.Println(*err)
 	}
 	return
 }

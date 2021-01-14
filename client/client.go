@@ -6,5 +6,6 @@ import (
 )
 
 var (
-	Client = http.Client{Timeout: time.Second * 10}
+	//Default is predefined http client
+	Default = http.Client{Timeout: time.Second * 10}
 )

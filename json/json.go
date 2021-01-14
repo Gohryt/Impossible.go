@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+//FromMemory function reads json from byte array
 func FromMemory(data []byte, target interface{}, errorHandler func(*error)) {
 	var (
 		err error
@@ -17,6 +18,7 @@ func FromMemory(data []byte, target interface{}, errorHandler func(*error)) {
 	return
 }
 
+//FromFile function reads json from file
 func FromFile(filePath string, target interface{}, errorHandler func(*error)) {
 	var (
 		file *os.File
@@ -36,6 +38,7 @@ func FromFile(filePath string, target interface{}, errorHandler func(*error)) {
 	return
 }
 
+//ToMemory function returns json as byte array
 func ToMemory(target interface{}, errorHandler func(*error)) (data []byte) {
 	var (
 		err error
@@ -45,6 +48,7 @@ func ToMemory(target interface{}, errorHandler func(*error)) (data []byte) {
 	return
 }
 
+//ToFile function saves json to file
 func ToFile(target interface{}, filePath string, errorHandler func(*error)) {
 	var (
 		file *os.File

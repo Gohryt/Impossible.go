@@ -6,9 +6,11 @@ import (
 )
 
 var (
+	//Letters is standart pattern for string generation
 	Letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 )
 
+//ByteArray function generates random string as byte array
 func ByteArray(number int64, pattern string, errorHandler func(*error)) (data []byte) {
 	var (
 		array = make([]byte, number, number)
@@ -28,6 +30,7 @@ func ByteArray(number int64, pattern string, errorHandler func(*error)) (data []
 	return
 }
 
+//String function generates random string
 func String(number int64, pattern string, errorHandler func(*error)) (data string) {
 	var (
 		array = make([]byte, number, number)

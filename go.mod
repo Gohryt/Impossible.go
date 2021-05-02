@@ -1,3 +1,3 @@
-module github.com/Gohryt/Impossible.go
+module github.com/Gohryt/ImpossibleGo
 
-go 1.15
+go 1.16

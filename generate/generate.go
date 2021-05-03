@@ -11,13 +11,17 @@ const (
 )
 
 //ByteArray function generates random string as byte array
-func ByteArray(number int, pattern string, errorHandler func(error)) (data []byte) {
-	data = make([]byte, number)
-	for i := 0; i < number; i++ {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
-		errorHandler(err)
-		if n != nil {
-			data[i] = pattern[n.Int64()]
+func ByteArray(number int, pattern string) (data []byte, err error) {
+	if number > 0 {
+		data = make([]byte, number)
+		for i := 0; i < number; i++ {
+			n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
+			if err != nil {
+				return data, err
+			}
+			if n != nil {
+				data[i] = pattern[n.Int64()]
+			}
 		}
 	}
 
@@ -25,16 +29,20 @@ func ByteArray(number int, pattern string, errorHandler func(error)) (data []byt
 }
 
 //String function generates random string
-func String(number int, pattern string, errorHandler func(error)) (data string) {
-	array := make([]byte, number)
-	for i := 0; i < number; i++ {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
-		errorHandler(err)
-		if n != nil {
-			array[i] = pattern[n.Int64()]
+func String(number int, pattern string) (data string, err error) {
+	if number > 0 {
+		array := make([]byte, number)
+		for i := 0; i < number; i++ {
+			n, err := rand.Int(rand.Reader, big.NewInt(int64(len(pattern))))
+			if err != nil {
+				return data, err
+			}
+			if n != nil {
+				array[i] = pattern[n.Int64()]
+			}
 		}
+		data = string(array)
 	}
-	data = string(array)
 
 	return
 }
